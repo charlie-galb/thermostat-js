@@ -20,4 +20,9 @@ describe('thermostat', function(){
     thermostat.lower(5)
     expect(thermostat.temp).toEqual(15)
   });
+
+  it('cannot lower temp below 10', function(){
+    expect(function(){thermostat.lower(15)}).toThrowError('TOO C-C-COLD!')
+    expect(thermostat.temp).toEqual(10)
+  })
 })
