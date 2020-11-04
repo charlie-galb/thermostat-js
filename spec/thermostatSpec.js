@@ -26,6 +26,13 @@ describe('thermostat', function(){
     expect(thermostat.temp).toEqual(10)
   })
 
+  it('can reset to default temp', function(){
+    thermostat.lower(5)
+    expect(thermostat.temp).toEqual(15)
+    thermostat.reset()
+    expect(thermostat.temp).toEqual(20)
+  })
+
   it('has powersaving mode on as default', function(){
     expect(thermostat.isPowerSavingModeOn()).toBe(true)
   })
@@ -48,11 +55,8 @@ describe('thermostat', function(){
 
   describe('if power saving mode is off', function(){
 
-    beforeEach(function(){
-      thermostat.powerSavingOff();
-    })
-
     it('can raise temp above 25', function(){
+      thermostat.powerSavingOff();
       expect(function(){thermostat.raise(10)}).not.toThrowError("Easy, there! That's too damn hot!")
       expect(thermostat.temp).toEqual(30)
     })

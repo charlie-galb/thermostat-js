@@ -39,4 +39,8 @@ class Thermostat{
       this.temp -= increment;
     };
   };
+
+  reset(){
+    this.temp = 20;
+  }
 }
