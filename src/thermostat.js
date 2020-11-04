@@ -27,8 +27,6 @@ class Thermostat{
     } else {
       this.temp += increment;
     };
-    console.log(this.powerSaving);
-    console.log(this.temp);
   };
 
   lower(increment){
@@ -42,5 +40,16 @@ class Thermostat{
 
   reset(){
     this.temp = 20;
-  }
+  };
+
+  energyUsage(){
+    if (this.temp < 18) {
+      return 'low-usage';
+    } else if (this.temp >= 18 && this.temp <= 25) {
+      return 'medium-usage';
+    } else {
+      return 'high-usage';
+    };
+  };
+
 }

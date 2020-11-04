@@ -62,4 +62,26 @@ describe('thermostat', function(){
     })
 
   })
+
+  describe('if temp is below 18', function(){
+    it('displays "low-usage" when energy usage is checked', function(){
+      thermostat.lower(5)
+      expect(thermostat.energyUsage()).toBe('low-usage')
+    })
+  })
+
+  describe('if temp is between 18 and 25', function(){
+    it('displays "medium-usage" when energy usage is checked', function(){
+      expect(thermostat.energyUsage()).toBe('medium-usage')
+    })
+  })
+
+  describe('if temp is above 25', function(){
+    it('displays "high-usage" when energy usage is checked', function(){
+      thermostat.powerSavingOff()
+      thermostat.raise(7)
+      expect(thermostat.energyUsage()).toBe('high-usage')
+    })
+  })
+
 })
