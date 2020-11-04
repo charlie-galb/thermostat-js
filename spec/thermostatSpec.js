@@ -25,4 +25,13 @@ describe('thermostat', function(){
     expect(function(){thermostat.lower(15)}).toThrowError('TOO C-C-COLD!')
     expect(thermostat.temp).toEqual(10)
   })
+
+  describe('if power saving mode is on', function(){
+
+    it('cannot raise temp above 25', function(){
+      expect(function(){thermostat.raise(19)}).toThrowError("Easy, there! That's too damn hot!")
+      expect(thermostat.temp).toEqual(25)
+    })
+
+  })
 })

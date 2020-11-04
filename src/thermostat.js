@@ -2,10 +2,16 @@ class Thermostat{
 
   constructor(){
     this.temp = 20;
+    this.power_saving = true;
   };
 
   raise(increment){
-    this.temp += increment;
+    if (this.power_saving = true && this.temp + increment > 25) {
+      this.temp = 25;
+      throw new Error("Easy, there! That's too damn hot!");
+    } else {
+      this.temp += increment;
+    };
   };
 
   lower(increment){
