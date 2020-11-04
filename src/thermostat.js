@@ -2,16 +2,33 @@ class Thermostat{
 
   constructor(){
     this.temp = 20;
-    this.power_saving = true;
+    this.powerSaving = true;
+  };
+
+  isPowerSavingModeOn(){
+    return this.powerSaving;
+  };
+
+  powerSavingOff(){
+    this.powerSaving = false;
+  };
+
+  powerSavingOn(){
+    this.powerSaving = true;
   };
 
   raise(increment){
-    if (this.power_saving = true && this.temp + increment > 25) {
+    if (this.powerSaving === true && this.temp + increment > 25) {
       this.temp = 25;
+      throw new Error("Easy, there! That's too damn hot!");
+    } else if (this.powerSaving === false && this.temp + increment > 32){
+      this.temp = 32;
       throw new Error("Easy, there! That's too damn hot!");
     } else {
       this.temp += increment;
     };
+    console.log(this.powerSaving);
+    console.log(this.temp);
   };
 
   lower(increment){
