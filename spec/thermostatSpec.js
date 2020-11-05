@@ -8,29 +8,29 @@ describe('thermostat', function(){
   });
 
   it('starts at 20 degrees', function(){
-    expect(thermostat.temp).toEqual(20)
+    expect(thermostat.getCurrentTemp()).toEqual(20)
   });
 
   it('can raise the temperature', function(){
     thermostat.raise(5)
-    expect(thermostat.temp).toEqual(25)
+    expect(thermostat.getCurrentTemp()).toEqual(25)
   });
 
   it('can lower the temperature', function(){
     thermostat.lower(5)
-    expect(thermostat.temp).toEqual(15)
+    expect(thermostat.getCurrentTemp()).toEqual(15)
   });
 
   it('cannot lower temp below 10', function(){
     expect(function(){thermostat.lower(15)}).toThrowError('TOO C-C-COLD!')
-    expect(thermostat.temp).toEqual(10)
+    expect(thermostat.getCurrentTemp()).toEqual(10)
   })
 
   it('can reset to default temp', function(){
     thermostat.lower(5)
-    expect(thermostat.temp).toEqual(15)
+    expect(thermostat.getCurrentTemp()).toEqual(15)
     thermostat.reset()
-    expect(thermostat.temp).toEqual(20)
+    expect(thermostat.getCurrentTemp()).toEqual(20)
   })
 
   it('has powersaving mode on as default', function(){
@@ -48,7 +48,7 @@ describe('thermostat', function(){
 
     it('cannot raise temp above 25', function(){
       expect(function(){thermostat.raise(10)}).toThrowError("Easy, there! That's too damn hot!")
-      expect(thermostat.temp).toEqual(25)
+      expect(thermostat.getCurrentTemp()).toEqual(25)
     })
 
   })
@@ -58,7 +58,7 @@ describe('thermostat', function(){
     it('can raise temp above 25', function(){
       thermostat.powerSavingOff();
       expect(function(){thermostat.raise(10)}).not.toThrowError("Easy, there! That's too damn hot!")
-      expect(thermostat.temp).toEqual(30)
+      expect(thermostat.getCurrentTemp()).toEqual(30)
     })
 
   })

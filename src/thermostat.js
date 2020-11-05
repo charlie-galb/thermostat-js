@@ -5,6 +5,10 @@ class Thermostat{
     this.powerSaving = true;
   };
 
+  getCurrentTemp(){
+    return this.temp;
+  }
+
   isPowerSavingModeOn(){
     return this.powerSaving;
   };
