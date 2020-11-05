@@ -12,23 +12,26 @@ describe('thermostat', function(){
   });
 
   it('can raise the temperature', function(){
-    thermostat.raise(5)
-    expect(thermostat.getCurrentTemp()).toEqual(25)
+    thermostat.raise()
+    expect(thermostat.getCurrentTemp()).toEqual(21)
   });
 
   it('can lower the temperature', function(){
-    thermostat.lower(5)
-    expect(thermostat.getCurrentTemp()).toEqual(15)
+    thermostat.lower()
+    expect(thermostat.getCurrentTemp()).toEqual(19)
   });
 
   it('cannot lower temp below 10', function(){
-    expect(function(){thermostat.lower(15)}).toThrowError('TOO C-C-COLD!')
+    for (var i = 0; i < 10; i++) {
+      thermostat.lower();
+    }
+    expect(function(){thermostat.lower()}).toThrowError('TOO C-C-COLD!')
     expect(thermostat.getCurrentTemp()).toEqual(10)
   })
 
   it('can reset to default temp', function(){
-    thermostat.lower(5)
-    expect(thermostat.getCurrentTemp()).toEqual(15)
+    thermostat.lower()
+    expect(thermostat.getCurrentTemp()).toEqual(19)
     thermostat.reset()
     expect(thermostat.getCurrentTemp()).toEqual(20)
   })
@@ -47,7 +50,10 @@ describe('thermostat', function(){
   describe('if power saving mode is on', function(){
 
     it('cannot raise temp above 25', function(){
-      expect(function(){thermostat.raise(10)}).toThrowError("Easy, there! That's too damn hot!")
+      for (var i = 0; i < 5; i++) {
+        thermostat.raise();
+      }
+      expect(function(){thermostat.raise()}).toThrowError("Easy, there! That's too damn hot!")
       expect(thermostat.getCurrentTemp()).toEqual(25)
     })
 
@@ -57,7 +63,10 @@ describe('thermostat', function(){
 
     it('can raise temp above 25', function(){
       thermostat.powerSavingOff();
-      expect(function(){thermostat.raise(10)}).not.toThrowError("Easy, there! That's too damn hot!")
+      for (var i = 0; i < 9; i++) {
+        thermostat.raise();
+      }
+      expect(function(){thermostat.raise()}).not.toThrowError("Easy, there! That's too damn hot!")
       expect(thermostat.getCurrentTemp()).toEqual(30)
     })
 
@@ -65,7 +74,9 @@ describe('thermostat', function(){
 
   describe('if temp is below 18', function(){
     it('displays "low-usage" when energy usage is checked', function(){
-      thermostat.lower(5)
+      for (var i = 0; i < 5; i++) {
+        thermostat.lower();
+      }
       expect(thermostat.energyUsage()).toBe('low-usage')
     })
   })
@@ -79,7 +90,9 @@ describe('thermostat', function(){
   describe('if temp is above 25', function(){
     it('displays "high-usage" when energy usage is checked', function(){
       thermostat.powerSavingOff()
-      thermostat.raise(7)
+      for (var i = 0; i < 9; i++) {
+        thermostat.raise();
+      }
       expect(thermostat.energyUsage()).toBe('high-usage')
     })
   })
