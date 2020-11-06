@@ -10,23 +10,31 @@ body {
 .all {
   margin: 0 auto;
   width: 60%;
+  text-align: center;
 }
 
 .temp-display {
-  height: 40%;
+  width: 40%;
+  margin: 0 auto;
+  margin-top: 10%;
+  margin-bottom: 2%;
   background-color: #f2ac50;
   border-style: solid;
   border-width: 2px;
   border-color: black;
-  border-radius: 10px;
+  border-radius: 100px;
+  padding: 30px;
+  font-size: 300%;
+
 }
 
 .buttons {
+  position: relative;
   margin-left: 1%;
 }
 
-#power-saving-status {
-
+#psm {
+  font-size: 150%;
 }
 
 .low-usage {
