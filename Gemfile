@@ -10,4 +10,3 @@ gem 'sinatra'
 gem 'rspec'
 gem 'capybara'
 gem "selenium-webdriver"
-gem "puma", '~>4.0'
